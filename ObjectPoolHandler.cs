@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -13,6 +14,10 @@ namespace BetterPlan.Pool
 		[SerializeField] int _maxSize = 50;
 
 		ObjectPool<PooledObject> _pool;
+
+		[FoldoutGroup("Debug"), ShowInInspector, ReadOnly] int _currentActiveSize => _pool.CountActive;
+		[FoldoutGroup("Debug"), ShowInInspector, ReadOnly] int _currentInactiveSize => _pool.CountInactive;
+		[FoldoutGroup("Debug"), ShowInInspector, ReadOnly] int _currentSize => _pool.CountAll;
 
 		public void Init(PooledObject pooledObjectPrefab)
 		{

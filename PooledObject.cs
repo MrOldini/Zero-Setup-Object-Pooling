@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace BetterPlan.Pool
@@ -7,7 +8,7 @@ namespace BetterPlan.Pool
 
 		public PooledObject Prefab => _prefab;
 
-		PooledObject _prefab;
+		[ShowInInspector, ReadOnly] PooledObject _prefab;
 
 		public PooledObject Create(Vector3 position = default, Quaternion rotation = default)
 		{
@@ -24,7 +25,7 @@ namespace BetterPlan.Pool
 
 		public void SetDefaultParent()
 		{
-			transform.SetParent(ObjectPoolingManager.GetPool(this).transform);
+			transform.SetParent(ObjectPoolingManager.GetPool(Prefab).transform);
 		}
 
 		public void SetPrefabReference(PooledObject prefab)
