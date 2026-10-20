@@ -2,5 +2,5 @@
   "name": "com.[betterplan].[zero-setup-object-pooling-]",
   "version": "1.0.0",
   "displayName": "Zero Setup Object Pooling",
-  "description": "Object Pooling for Unity which requires almost no setup. Great for VFX and can be expanded to work with different game systems as well.",
+  "description": "Object Pooling for Unity that requires almost no setup. Great for VFX and can be expanded to work with different game systems as well."
 }
