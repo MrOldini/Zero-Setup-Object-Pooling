@@ -1,0 +1,12 @@
+{
+  "name": "com.[betterplan].[zero-setup-object-pooling-]",
+  "version": "1.0.0",
+  "displayName": "Zero Setup Object Pooling",
+  "description": "Object Pooling for Unity which requires almost no setup. Great for VFX and can be expanded to work with different game systems as well.",
+ },
+  "author": {
+    "name": "Oldin Soukup",
+    "email": "betterplangames@gmail.com",
+    "url": "https://store.steampowered.com/curator/45148139"
+  }
+}
