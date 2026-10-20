@@ -7,7 +7,9 @@ namespace BetterPlan.Pool
 	{
 		[SerializeField] UnityEvent _onActivated;
 		[SerializeField] UnityEvent _onPreDeactivate;
-		
+		[SerializeField] UnityEvent _onDestroyRequested;
+
+
 		public override void Activate()
 		{
 			base.Activate();
@@ -18,6 +20,13 @@ namespace BetterPlan.Pool
 		{
 			_onPreDeactivate.Invoke();
 			base.Deactivate();
+		}
+
+		public override void RequestDestroyThisObject()
+		{
+			base.RequestDestroyThisObject();
+			_onDestroyRequested?.Invoke();
+
 		}
 	}
 }

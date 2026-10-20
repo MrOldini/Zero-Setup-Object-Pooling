@@ -1,14 +1,19 @@
-using Sirenix.OdinInspector;
+//using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 namespace BetterPlan.Pool
 {
 	public abstract class PooledObject : MonoBehaviour
 	{
+		public Action OnActivated;
+		public Action OnDeactivated;
 
 		public PooledObject Prefab => _prefab;
 
-		[ShowInInspector, ReadOnly] PooledObject _prefab;
+		//[ShowInInspector, ReadOnly] 
+		PooledObject _prefab;
+		[SerializeField] float _destroyDelay = 0f;
 
 		public PooledObject Create(Vector3 position = default, Quaternion rotation = default)
 		{
@@ -33,7 +38,16 @@ namespace BetterPlan.Pool
 			_prefab = prefab;
 		}
 
-		public void RequestDestroyThisObject()
+		public virtual void RequestDestroyThisObject()
+		{
+			if (_destroyDelay == 0) DestroyThisImmidiately();
+			else
+			{
+				TimerManager.Instance.SetTimer(_destroyDelay, this, DestroyThisImmidiately);
+			}
+		}
+
+		public void DestroyThisImmidiately()
 		{
 			ObjectPoolingManager.Destroy(this);
 		}
@@ -41,11 +55,13 @@ namespace BetterPlan.Pool
 		public virtual void Activate()
 		{
 			gameObject.SetActive(true);
+			OnActivated?.Invoke();
 		}
 
 		public virtual void Deactivate()
 		{
 			gameObject.SetActive(false);
+			OnDeactivated?.Invoke();
 		}
 	}
 }
